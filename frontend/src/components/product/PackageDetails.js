@@ -7,25 +7,25 @@
 
 // import { useAlert } from 'react-alert'
 // import { useDispatch, useSelector } from 'react-redux'
-// import { getVideoDetails, newReview, clearErrors } from '../../actions/videoActions'
-// // import { addItemToCart } from '../../actions/cartActions'
-// import { NEW_REVIEW_RESET } from '../../constants/videoConstants'
+// import { getPackDetails, newReview, clearErrors } from '../../actions/packageActions'
+// import { addItemToCart } from '../../actions/cartActions'
+// import { NEW_REVIEW_RESET } from '../../constants/packageConstants'
 
-// const VideoDetails = ({ match }) => {
+// const PackageDetails = ({ match }) => {
 
-//     // const [quantity, setQuantity] = useState(1)
+//     const [quantity, setQuantity] = useState(1)
 //     const [rating, setRating] = useState(0);
 //     const [comment, setComment] = useState('');
 
 //     const dispatch = useDispatch();
 //     const alert = useAlert();
 
-//     const { loading, error, video } = useSelector(state => state.videoDetails)
+//     const { loading, error, pack } = useSelector(state => state.packDetails)
 //     const { user } = useSelector(state => state.auth)
 //     const { error: reviewError, success } = useSelector(state => state.newReview)
 
 //     useEffect(() => {
-//         dispatch(getVideoDetails(match.params.id))
+//         dispatch(getPackDetails(match.params.id))
 
 //         if (error) {
 //             alert.error(error);
@@ -44,30 +44,30 @@
 
 //     }, [dispatch, alert, error, reviewError, match.params.id, success])
 
-//     // const addToCart = () => {
-//     //     dispatch(addItemToCart(match.params.id, quantity));
-//     //     alert.success('Item Added to Cart')
-//     // }
+//     const addToCart = () => {
+//         dispatch(addItemToCart(match.params.id, quantity));
+//         alert.success('Item Added to Cart')
+//     }
 
-//     // const increaseQty = () => {
-//     //     const count = document.querySelector('.count')
+//     const increaseQty = () => {
+//         const count = document.querySelector('.count')
 
-//     //     if (count.valueAsNumber >= product.stock) return;
+//         if (count.valueAsNumber >= pack.stock) return;
 
-//     //     const qty = count.valueAsNumber + 1;
-//     //     setQuantity(qty)
-//     // }
+//         const qty = count.valueAsNumber + 1;
+//         setQuantity(qty)
+//     }
 
-//     // const decreaseQty = () => {
+//     const decreaseQty = () => {
 
-//     //     const count = document.querySelector('.count')
+//         const count = document.querySelector('.count')
 
-//     //     if (count.valueAsNumber <= 1) return;
+//         if (count.valueAsNumber <= 1) return;
 
-//     //     const qty = count.valueAsNumber - 1;
-//     //     setQuantity(qty)
+//         const qty = count.valueAsNumber - 1;
+//         setQuantity(qty)
 
-//     // }
+//     }
 
 //     function setUserRatings() {
 //         const stars = document.querySelectorAll('.star');
@@ -112,73 +112,62 @@
 
 //         formData.set('rating', rating);
 //         formData.set('comment', comment);
-//         formData.set('videoId', match.params.id);
+//         formData.set('packId', match.params.id);
 
 //         dispatch(newReview(formData));
 //     }
-
-
-
-
-//     // 
-
 
 //     return (
 //         <Fragment>
 //             {loading ? <Loader /> : (
 //                 <Fragment>
-//                     <MetaData title={video.name} />
+//                     <MetaData title={pack.numberofmarla} />
 //                     <div className="row d-flex justify-content-around">
 //                         <div className="col-12 col-lg-5 img-fluid" id="product_image">
-//                         <Carousel pause='hover'>
-//                                 {video.clips && video.clips.map(clip => (
-//                                     <Carousel.Item key={clip.public_id}>
-//                                         {/* <img className="d-block w-100" src={clip.url} alt={video.title} /> */}
-//                                         <video 
-//                      width="55" height="52" controls>
-//                                     <source src={clip.url} key={clip} type="video/mp4" /> 
-//                                     </video> 
+//                             <Carousel pause='hover'>
+//                                 {pack.images && pack.images.map(image => (
+//                                     <Carousel.Item key={image.public_id}>
+//                                         <img className="d-block w-100" src={image.url} alt={pack.title} />
 //                                     </Carousel.Item>
 //                                 ))}
 //                             </Carousel>
 //                         </div>
 
 //                         <div className="col-12 col-lg-5 mt-5">
-//                             <h3>{video.name}</h3>
-//                             <p id="product_id">Video # {video._id}</p>
+//                             <h3>{pack.numberofmarla}</h3>
+//                             <p id="product_id">Package # {pack._id}</p>
 
 //                             <hr />
 
 //                             <div className="rating-outer">
-//                                 <div className="rating-inner" style={{ width: `${(video.ratings / 5) * 100}%` }}></div>
+//                                 <div className="rating-inner" style={{ width: `${(pack.ratings / 5) * 100}%` }}></div>
 //                             </div>
-//                             <span id="no_of_reviews">({video.numOfReviews} Reviews)</span>
+//                             <span id="no_of_reviews">({pack.numOfReviews} Reviews)</span>
 
 //                             <hr />
 
-//                             <p id="product_price">{video.numOfDays}</p>
-//                             {/* <div className="stockCounter d-inline">
+//                             <p id="product_price">${pack.totalprice}</p>
+//                             <div className="stockCounter d-inline">
 //                                 <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 
 //                                 <input type="number" className="form-control count d-inline" value={quantity} readOnly />
 
 //                                 <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
-//                             </div> */}
-//                             {/* <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart}>Add to Cart</button> */}
+//                             </div>
+//                             <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={pack.stock === 0} onClick={addToCart}>Add to Cart</button>
 
 //                             <hr />
 
-//                             {/* <p>Status: <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
+//                             <p>Status: <span id="stock_status" className={pack.stock > 0 ? 'greenColor' : 'redColor'} >{pack.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
 
-//                             <hr /> */}
+//                             <hr />
 
 //                             <h4 className="mt-2">Description:</h4>
-//                             <p>{video.description}</p>
+//                             <p>{pack.totalprice}</p>
 //                             <hr />
-//                             {/* <p id="product_seller mb-3">Sold by: <strong>{video.seller}</strong></p> */}
+//                             <p id="product_seller mb-3">Sold by: <strong>{pack.totalprice}</strong></p>
 
-//                             {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" 
-//                             data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>
+//                             {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>
 //                                 Submit Your Review
 //                             </button>
 //                                 :
@@ -228,8 +217,8 @@
 //                         </div>
 //                     </div>
 
-//                     {video.reviews && video.reviews.length > 0 && (
-//                         <ListReviews reviews={video.reviews} />
+//                     {pack.reviews && pack.reviews.length > 0 && (
+//                         <ListReviews reviews={pack.reviews} />
 //                     )}
 
 //                 </Fragment>
@@ -238,8 +227,7 @@
 //     )
 // }
 
-// export default VideoDetails
-
+// export default PackageDetails
 
 import React, { Fragment, useState, useEffect } from 'react'
 import { Carousel } from 'react-bootstrap'
@@ -250,25 +238,25 @@ import ListReviews from '../review/ListReviews'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getVideoDetails,newVideoReview,clearErrors } from '../../actions/videoActions'
-// import { addItemToCart } from '../../actions/cartActions'
-import { NEW_REVIEW_RESET } from '../../constants/videoConstants'
+import { getPackDetails, newReview, clearErrors } from '../../actions/packageActions'
+import { addItemToCart } from '../../actions/cartActions'
+import { NEW_REVIEW_RESET } from '../../constants/packageConstants'
 
-const VideoDetails = ({ match }) => {
+const PackageDetails = ({ match }) => {
 
-    // const [quantity, setQuantity] = useState(1)
+    const [quantity, setQuantity] = useState(1)
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
 
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { loading, error, video } = useSelector(state => state.videoDetails)
+    const { loading, error, pack } = useSelector(state => state.packDetails)
     const { user } = useSelector(state => state.auth)
-    const { error: reviewError, success } = useSelector(state => state.newVideoReview)
+    const { error: reviewError, success } = useSelector(state => state.newReview)
 
     useEffect(() => {
-        dispatch(getVideoDetails(match.params.id))
+        dispatch(getPackDetails(match.params.id))
 
         if (error) {
             alert.error(error);
@@ -295,7 +283,7 @@ const VideoDetails = ({ match }) => {
     // const increaseQty = () => {
     //     const count = document.querySelector('.count')
 
-    //     if (count.valueAsNumber >= product.stock) return;
+    //     if (count.valueAsNumber >= pack.stock) return;
 
     //     const qty = count.valueAsNumber + 1;
     //     setQuantity(qty)
@@ -355,73 +343,62 @@ const VideoDetails = ({ match }) => {
 
         formData.set('rating', rating);
         formData.set('comment', comment);
-        formData.set('videoId', match.params.id);
+        formData.set('packId', match.params.id);
 
-        dispatch(newVideoReview(formData));
+        dispatch(newReview(formData));
     }
-
-
-
-
-    // 
-
 
     return (
         <Fragment>
             {loading ? <Loader /> : (
                 <Fragment>
-                    <MetaData title={video.name} />
+                    <MetaData title={pack.numberofmarla} />
                     <div className="row d-flex justify-content-around">
                         <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                         <Carousel pause='hover'> 
-                                {video.clips && video.clips.map(clip => (
-                                    <Carousel.Item key={clip.public_id}>
-                                       
-                                       <video 
-                     style={{'width':'100%'}}  controls>
-                                    <source src={clip.url} key={clip} type="video/mp4" /> 
-                                    </video> 
+                            <Carousel pause='hover'>
+                                {pack.images && pack.images.map(image => (
+                                    <Carousel.Item key={image.public_id}>
+                                        <img className="d-block w-100" src={image.url} alt={pack.title} />
                                     </Carousel.Item>
                                 ))}
-                            </Carousel> 
+                            </Carousel>
                         </div>
 
                         <div className="col-12 col-lg-5 mt-5">
-                            <h3>{video.name}</h3>
-                            <p id="product_id">Video # {video._id}</p>
+                            <h3>{pack.numberofmarla}</h3>
+                            <p id="product_id">Package # {pack._id}</p>
 
                             <hr />
 
                             <div className="rating-outer">
-                                <div className="rating-inner" style={{ width: `${(video.ratings / 5) * 100}%` }}></div>
+                                <div className="rating-inner" style={{ width: `${(pack.ratings / 5) * 100}%` }}></div>
                             </div>
-                            <span id="no_of_reviews">({video.numOfReviews} Reviews)</span>
+                            <span id="no_of_reviews">({pack.numOfReviews} Reviews)</span>
 
                             <hr />
 
-                            <p id="product_price">{video.numOfDays}</p>
-                            {/* <div className="stockCounter d-inline">
+                            {/* <p id="product_price">${pack.totalprice}</p>
+                            <div className="stockCounter d-inline">
                                 <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 
                                 <input type="number" className="form-control count d-inline" value={quantity} readOnly />
 
                                 <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
-                            </div> */}
-                            {/* <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart}>Add to Cart</button> */}
+                            </div>
+                            <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={pack.stock === 0} onClick={addToCart}>Add to Cart</button> */}
 
                             <hr />
 
-                            {/* <p>Status: <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
+                            {/* <p>Status: <span id="stock_status" className={pack.stock > 0 ? 'greenColor' : 'redColor'} >{pack.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
 
                             <hr /> */}
 
                             <h4 className="mt-2">Description:</h4>
-                            <p>{video.description}</p>
-                            <hr />
-                            {/* <p id="product_seller mb-3">Sold by: <strong>{video.seller}</strong></p> */}
+                            {/* <p>{pack.totalprice}</p> */}
+                            {/* <hr />
+                            <p id="product_seller mb-3">Sold by: <strong>{pack.totalprice}</strong></p> */}
 
-                            {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" 
-                            data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>
+                            {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>
                                 Submit Your Review
                             </button>
                                 :
@@ -471,8 +448,8 @@ const VideoDetails = ({ match }) => {
                         </div>
                     </div>
 
-                    {video.reviews && video.reviews.length > 0 && (
-                        <ListReviews reviews={video.reviews} />
+                    {pack.reviews && pack.reviews.length > 0 && (
+                        <ListReviews reviews={pack.reviews} />
                     )}
 
                 </Fragment>
@@ -481,4 +458,4 @@ const VideoDetails = ({ match }) => {
     )
 }
 
-export default VideoDetails
+export default PackageDetails

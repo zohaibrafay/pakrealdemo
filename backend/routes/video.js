@@ -134,11 +134,11 @@ router.route('/video/:id').get(getSingleVideo);
 router.route('/admin/video/:id')
     .put(isAuthenticatedUser, authorizeRoles('admin'), updateVideo)
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteVideo);
+    
 
-
-router.route('/review').put(isAuthenticatedUser, createVideoReview)
-router.route('/reviews').get(isAuthenticatedUser, getVideoReviews)
-router.route('/reviews').delete(isAuthenticatedUser, deleteReview)
+router.route('/reviewvd').put(isAuthenticatedUser, createVideoReview)
+router.route('/reviewsvd').get(isAuthenticatedUser, getVideoReviews)
+router.route('/reviewsvd').delete(isAuthenticatedUser, deleteReview)
 
 
 

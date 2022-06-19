@@ -9,34 +9,9 @@ const ConstructionCost = () => {
   const [formValues,setFormValues] = useState(intialValues);
   const [formErrors,setFormErrors] = useState({});
   const [isSubmit,setIsSumit] = useState(false);
-  //let Error;
-  //const [area, setArea] = useState("");
- // const [cost, setCost] = useState("");
-  //const [error,setError] = useState("");
 
   const [costResult, setcostResult] = useState("");
-  //const calculatecost = () => {
-    // if (area === 999999 && area < 1089   ) {
-    //      let Error="Value Must be Between 1089 to 99999";
-    //      //alert="Value Must be Between 1089 to 99999";
-    //     // setError(Error);
-    //     setcostResult(Error);
-        
-    //    }else{
-       
-    
-      //console.log(value.area)
-    
-      // let totalcost = Number(area * cost).toFixed(2);
-      //let totalcost = value.area * value.cost;
-      //console.log(totalcost)
-    //setcostResult(totalcost);
-    
-    
-    //setHeight("");
-    //setWeight("");
-      // }
-  //}
+  
   
   const handleChange = (e) => {
     //console.log(e.target);
@@ -44,13 +19,11 @@ const ConstructionCost = () => {
     setFormValues({  ...formValues, [name]: value });
     
     console.log(formValues);
-    // let totalcost = Number(value.area*value.cost);
-      
-    //   console.log(totalcost)
-    //setcostResult(totalcost);
+   
   }
   function handlesubmit(e) {
     e.preventDefault();
+    e.target.reset();
     setFormErrors(validate(formValues));
      setIsSumit(true);
   };
@@ -66,8 +39,8 @@ const ConstructionCost = () => {
      if(value.area > 999999){
       errors.area = "Area is less than 999999 "
 }
-else if(value.area < 1089){
-  errors.area = "Area is greater than 1089"
+else if(value.area < 1){
+  errors.area = "Area is greater than 1"
 }
    else if (!value.area  ) {
       errors.area = "Area is Required!"
@@ -82,16 +55,20 @@ else if(value.cost < 2000){
   errors.cost = "Cost is greater than 2000"
 }
     
-      //  else if(value.area > 999999 && value.area < 1089){
-      //          errors.area = "Area is between 999999 to 1089"
-      // }
+      
     else {
       let total = value.area*value.cost;
       setcostResult(total);
+      setFormValues('');
     }
     
     return errors;
     
+    };
+
+    const handleClick = () => {
+      // 👇️ clear input value
+      setFormValues('');
     };
 
   return (
@@ -103,7 +80,7 @@ else if(value.cost < 2000){
                 <Fragment>
     <div className="container container-fluid">
         <div className="wrapper my-5"> 
-        <pre>{JSON.stringify(formValues,undefined,2)}</pre>
+        {/* <pre>{JSON.stringify(formValues,undefined,2)}</pre> */}
         <form className="shadow-lg" encType='multipart/form-data' onSubmit={handlesubmit} >
             <h1 className="mb-4">Cost Construction Calculator</h1>
 
@@ -161,8 +138,9 @@ else if(value.cost < 2000){
               Calculate
             </button>
             <button
-              id="login_button"
-              type="submit"
+              //id="login_button"
+             // type="submit"
+             onClick={handleClick}
               class="btn btn-block py-3"
             >
               Reset

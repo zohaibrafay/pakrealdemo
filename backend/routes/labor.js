@@ -19,7 +19,7 @@ const { isAuthenticatedUser, authorizeRoles } = require("../middlewares/auth");
 
 router.route("/labors").get(getLabors);
 router.route("/admin/labors").get(getAdminLabors);
-router.route("/labor/:id").get(getSingleLabor);
+router.route("/labord/:id").get(getSingleLabor);
 
 router.route("/labor/new").post(newLabor);
 
@@ -28,8 +28,8 @@ router
   .patch(updateLabor)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteLabor);
 
-router.route("/review").put(isAuthenticatedUser, createLaborReview);
-router.route("/reviews").get(isAuthenticatedUser, getLaborReviews);
-router.route("/reviews").delete(isAuthenticatedUser, deleteReview);
+router.route("/reviewlb").put(isAuthenticatedUser, createLaborReview);
+router.route("/reviewslb").get(isAuthenticatedUser, getLaborReviews);
+router.route("/reviewslb").delete(isAuthenticatedUser, deleteReview);
 
 module.exports = router;

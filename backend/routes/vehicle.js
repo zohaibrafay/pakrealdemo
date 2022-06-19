@@ -17,7 +17,7 @@ const { isAuthenticatedUser, authorizeRoles } = require("../middlewares/auth");
 
 router.route("/vehicles").get(getVehicles);
 router.route("/admin/vehicles").get(getAdminVehicles);
-router.route("/vehicle/:id").get(getSingleVehicle);
+router.route("/vehicled/:id").get(getSingleVehicle);
 
 router.route("/vehicle/new").post(newVehicle);
 
@@ -26,8 +26,8 @@ router
   .patch(updateVehicle)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteVehicle);
 
-router.route("/review").put(isAuthenticatedUser, createVehicleReview);
-router.route("/reviews").get(isAuthenticatedUser, getVehicleReviews);
-router.route("/reviews").delete(isAuthenticatedUser, deleteReview);
+router.route("/reviewvh").put(isAuthenticatedUser, createVehicleReview);
+router.route("/reviewsvh").get(isAuthenticatedUser, getVehicleReviews);
+router.route("/reviewsvh").delete(isAuthenticatedUser, deleteReview);
 
 module.exports = router;

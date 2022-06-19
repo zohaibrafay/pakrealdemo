@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+
+
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./components/layout/Header";
@@ -12,6 +14,8 @@ import VideoDetails from "./components/video/VideoDetails";
 import UploadVideo from "./components/admin/UploadVideo";
 
 import ProductDetails from "./components/product/ProductDetails";
+import VehicleDetails from "./components/product/VehicleDetails";
+import LaborDetails from "./components/product/LaborDetails";
 import Cart from "./components/cart/Cart";
 import Shipping from "./components/cart/Shipping";
 import ConfirmOrder from "./components/cart/ConfirmOrder";
@@ -19,8 +23,9 @@ import Payment from "./components/cart/Payment";
 
 import Profile from "./components/user/Profile";
 import Labor from "./components/service/Labor";
-
+// Package
 import Package from "./components/product/Package";
+import PackageDetails from "./components/product/PackageDetails";
 import VehicleShow from "./components/product/VehicleShow";
 import LaborShow from "./components/product/LaborShow";
 import Vehicle from "./components/service/Vehicle";
@@ -34,21 +39,25 @@ import NewPassword from "./components/user/NewPassword";
 
 import ListOrders from "./components/order/ListOrders";
 import OrderDetails from "./components/order/OrderDetails";
-import Complain from "./components/complain/Complain";
+// import Complain from "./components/complain/Complain";
+
+// Complaint
+import Complain from './components/complain/Complain'
 
 //Calculator
 import Calculator from "./components/calculator/Calculator";
 import ServiceProvider from "./components/service/ServiceProvider";
+
 import ConstructionCost from "./components/calculator/ConstructionCost";
 import CementConcrete from "./components/calculator/CementConcrete";
 import Plaster from "./components/calculator/Plaster";
-import Brick from "./components/calculator/Brick";
-import ConcreteBlock from "./components/calculator/ConcreteBlock";
-import Flooring from "./components/calculator/Flooring";
-import Paint from "./components/calculator/Paint";
-import RoundColumn from "./components/calculator/RoundColumn";
-import Stair from "./components/calculator/Stair";
-import ConcreteTube from "./components/calculator/ConcreteTube";
+// import Brick from "./components/calculator/Brick";
+// import ConcreteBlock from "./components/calculator/ConcreteBlock";
+// import Flooring from "./components/calculator/Flooring";
+// import Paint from "./components/calculator/Paint";
+// import RoundColumn from "./components/calculator/RoundColumn";
+// import Stair from "./components/calculator/Stair";
+// import ConcreteTube from "./components/calculator/ConcreteTube";
 import Steel from "./components/calculator/Steel";
 
 // Admin Imports
@@ -66,7 +75,10 @@ import UsersList from "./components/admin/UsersList";
 import ComplainList from "./components/admin/ComplainList";
 import CouponList from "./components/admin/CouponList";
 import UpdateUser from "./components/admin/UpdateUser";
+
 import ProductReviews from "./components/admin/ProductReviews";
+// import ProductReviews from "./components/admin/ProductReviews";
+
 import NewLabor from "./components/admin/NewLabor";
 import NewVehicle from "./components/admin/NewVehicle";
 import NewPackage from "./components/admin/NewPackage";
@@ -81,16 +93,44 @@ import Videodisplay from "./components/video/Videodisplay";
 import { loadUser } from "./actions/userActions";
 import { useSelector } from "react-redux";
 
-import store from "./store";
-import { OrderSuccess } from "./components/cart/OrderSuccess";
+
+import  OrderSuccess  from "./components/cart/OrderSuccess";
+
 import Display from "./components/product/Display";
 
-function App() {
-  useEffect(() => {
-    store.dispatch(loadUser);
-  }, []);
 
-  const { user, isAuthenticated, loading } = useSelector((state) => state.auth);
+
+import store from './store'
+import axios from 'axios'
+
+// Payment
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
+
+function App() {
+  const [stripeApiKey, setStripeApiKey] = useState('');
+
+  useEffect(() => {
+    store.dispatch(loadUser())
+
+    async function getStripApiKey() {
+      const { data } = await axios.get('/api/v1/stripeapi');
+
+      setStripeApiKey(data.stripeApiKey)
+    }
+
+    getStripApiKey();
+
+  }, [])
+
+  const { user, isAuthenticated, loading } = useSelector(state => state.auth)
+
+// function App() {
+//   useEffect(() => {
+//     store.dispatch(loadUser);
+//   }, []);
+
+//   const { user, isAuthenticated, loading } = useSelector((state) => state.auth);
   return (
     <Router>
       <div className="App">
@@ -105,8 +145,7 @@ function App() {
 
             <Route path="/product/:id" component={ProductDetails} exact />
             <Route path="/cart" component={Cart} exact />
-            <ProtectedRoute path="/shipping" component={Shipping} />
-
+           
             <ProtectedRoute path="/me" component={Profile} exact />
             <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
             <ProtectedRoute
@@ -122,11 +161,17 @@ function App() {
             />
             <Route path="/labor" component={Labor} />
             <Route path="/package" component={Package} />
-            <Route path="/laborshow" component={LaborShow} />
-            <Route path="/vehicleshow" component={VehicleShow} />
+            <Route path="/pack/:id" component={PackageDetails} exact />
+            <Route path="/labors" component={LaborShow} />
+            <Route path="/vehicles" component={VehicleShow} />
             <Route path="/complain" component={Complain} />
             <Route path="/video" component={Video} />
+            {/* <Route path="/video/:id" component={VideoDetails} exact /> */}
+            <Route path="/videos/:id" component={VideoDetails} exact />
             <Route path="/vehicle" component={Vehicle} />
+            {/* //Vehicle and Labor Details */}
+            <Route path="/vehicled/:id" component={VehicleDetails} exact />
+            <Route path="/labord/:id" component={LaborDetails} exact />
             <Route path="/calculator" component={Calculator} exact />
             <Route
               path="/constructioncost"
@@ -135,21 +180,24 @@ function App() {
             />
             <Route path="/cementconcrete" component={CementConcrete} exact />
             <Route path="/plaster" component={Plaster} exact />
-            <Route path="/brick" component={Brick} exact />
-            <Route path="/concreteblock" component={ConcreteBlock} exact />
-            <Route path="/flooring" component={Flooring} exact />
-            <Route path="/paint" component={Paint} exact />
-            <Route path="/roundcolumn" component={RoundColumn} exact />
-            <Route path="/stair" component={Stair} exact />
-            <Route path="/concretetube" component={ConcreteTube} exact />
+            
             <Route path="/steel" component={Steel} exact />
 
             <Route path="/serviceprovider" component={ServiceProvider} exact />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/payment" component={Payment} />
-            <Route path="/confirm" component={ConfirmOrder} />
-            <Route path="/ordersuccess" component={OrderSuccess} />
+            <ProtectedRoute path="/shipping" component={Shipping} />
+           
+            <Route path="/order/confirm" component={ConfirmOrder}  />
+            {stripeApiKey &&
+            <Elements stripe={loadStripe(stripeApiKey)}>
+              <ProtectedRoute path="/payment" component={Payment} />
+             
+            </Elements>
+          }
+         
+           
+            <Route path="/success" component={OrderSuccess} />
             <ProtectedRoute path="/orders/me" component={ListOrders} exact />
 
             <ProtectedRoute
@@ -213,6 +261,8 @@ function App() {
           component={OrdersList}
           exact
         />
+
+        <ProtectedRoute path="/admin/order/:id" isAdmin={true} component={ProcessOrder} exact />
         <ProtectedRoute
           path="/admin/complains"
           isAdmin={true}
@@ -225,12 +275,12 @@ function App() {
           component={CouponList}
           exact
         />
-        <ProtectedRoute
+        {/* <ProtectedRoute
           path="/admin/order/process"
           isAdmin={true}
           component={ProcessOrder}
           exact
-        />
+        /> */}
         <ProtectedRoute
           path="/admin/users"
           isAdmin={true}

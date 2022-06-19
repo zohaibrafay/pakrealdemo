@@ -14,6 +14,7 @@ const Header = () => {
     const dispatch = useDispatch();
 
     const { user, loading } = useSelector(state => state.auth)
+    console.log(user)
     const { cartItems } = useSelector(state => state.cart)
 
     const logoutHandler = () => {
@@ -24,6 +25,7 @@ const Header = () => {
 
 
   return (
+    <Fragment>
     <nav className="navbar navbar-expand-lg navbar-light bg-black">
           <div className="navbar-brand">
                         <Link to="/">
@@ -73,7 +75,7 @@ const Header = () => {
       
     </ul>
     <div>
-    <div className="col-12 col-md-6 mt-2 mt-md-0">
+    <div className="col-12 col-md-12 mt-2 mt-md-0">
                     <Route render={({ history }) => <Search history={history} />} />
                 </div>
     </div>
@@ -113,8 +115,6 @@ const Header = () => {
                                 </Link>
 
                             </div>
-
-
                         </div>
 
                     ) : !loading && <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>}
@@ -124,7 +124,7 @@ const Header = () => {
   </div>
 </nav>
 
-
+</Fragment>
   );
 };
 

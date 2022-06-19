@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router();
 
@@ -29,8 +30,8 @@ router.route('/admin/pack/:id')
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deletePack);
 
 
-router.route('/review').put(isAuthenticatedUser, createPackReview)
-router.route('/reviews').get(isAuthenticatedUser, getPackReviews)
-router.route('/reviews').delete(isAuthenticatedUser, deleteReview)
+router.route('/reviewpk').put(isAuthenticatedUser, createPackReview)
+router.route('/reviewspk').get(isAuthenticatedUser, getPackReviews)
+router.route('/reviewspk').delete(isAuthenticatedUser, deleteReview)
 
 module.exports = router;

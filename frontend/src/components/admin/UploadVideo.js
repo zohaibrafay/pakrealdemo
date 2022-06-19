@@ -173,7 +173,7 @@ const UploadVideo = ({history}) => {
               id="login_button"
               type="submit"
               class="btn btn-block py-3"
-              disabled={loading ? true : false}
+              // disabled={loading ? true : false}
             >
               Upload
             </button>

@@ -156,7 +156,7 @@ const Home = ({ match }) => {
         </Link>
       </div>
       <div className="col-lg-4 col-md-6 col-sm-6">
-      <Link to="/vehicleshow">
+      <Link to="/vehicles">
         <div className="service-item mb-4">
           <div className="icon d-flex align-items-center">
             <i className="fa fa-truck text-lg" />
@@ -169,7 +169,7 @@ const Home = ({ match }) => {
         </Link>
       </div>
       <div className="col-lg-4 col-md-6 col-sm-6">
-      <Link to="/laborshow">
+      <Link to="/labors">
         <div className="service-item mb-4">
           <div className="icon d-flex align-items-center">
             <i className="fa fa-male text-lg" />

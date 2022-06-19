@@ -36,6 +36,10 @@ const labourSchema = new mongoose.Schema({
     type: String,
     maxlength: [255, "Labour Area Length should not exceed 255 characters"],
   },
+  ratings: {
+    type: Number,
+    default: 0
+},
   images: [
     {
       public_id: {
@@ -46,6 +50,36 @@ const labourSchema = new mongoose.Schema({
       },
     },
   ],
+  numOfReviews: {
+    type: Number,
+    default: 0
+},
+reviews: [
+    {
+        user: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        rating: {
+            type: Number,
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true
+        }
+    }
+],
+user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: true
+},
   isApproved: {
     type: Boolean,
     default: false

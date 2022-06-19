@@ -7,26 +7,26 @@ import ListReviews from '../review/ListReviews'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductDetails, newReview, clearErrors } from '../../actions/productActions'
+import { getVehicleDetails, newVehicleReview, clearErrors } from '../../actions/vehicleActions'
 import { addItemToCart } from '../../actions/cartActions'
-import { NEW_REVIEW_RESET } from '../../constants/productConstants'
+import { NEW_REVIEW_RESET } from '../../constants/vehicleConstants'
 
-const ProductDetails = ({ match }) => {
+const VehicleDetails = ({ match }) => {
 
-    const [quantity, setQuantity] = useState(1)
+    // const [quantity, setQuantity] = useState(1)
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
-
+console.log(comment)
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { loading, error, product } = useSelector(state => state.productDetails)
+    const { loading, error, vehicle } = useSelector(state => state.vehicleDetails)
     const { user } = useSelector(state => state.auth)
-    const { error: reviewError, success } = useSelector(state => state.newReview)
-
+    const { error: reviewError, success } = useSelector(state => state.newVehicleReview)
+    // console.log(dispatch(getVehicleDetails(match.params.id)))
     useEffect(() => {
-        dispatch(getProductDetails(match.params.id))
-
+        dispatch(getVehicleDetails(match.params.id))
+console.log(dispatch(getVehicleDetails(match.params.id)))
         if (error) {
             alert.error(error);
             dispatch(clearErrors())
@@ -38,36 +38,37 @@ const ProductDetails = ({ match }) => {
         }
 
         if (success) {
+            console.log(success);
             alert.success('Reivew posted successfully')
             dispatch({ type: NEW_REVIEW_RESET })
         }
 
     }, [dispatch, alert, error, reviewError, match.params.id, success])
 
-    const addToCart = () => {
-        dispatch(addItemToCart(match.params.id, quantity));
-        alert.success('Item Added to Cart')
-    }
+    // const addToCart = () => {
+    //     dispatch(addItemToCart(match.params.id, quantity));
+    //     alert.success('Item Added to Cart')
+    // }
 
-    const increaseQty = () => {
-        const count = document.querySelector('.count')
+    // const increaseQty = () => {
+    //     const count = document.querySelector('.count')
 
-        if (count.valueAsNumber >= product.stock) return;
+    //     if (count.valueAsNumber >= vehicle.stock) return;
 
-        const qty = count.valueAsNumber + 1;
-        setQuantity(qty)
-    }
+    //     const qty = count.valueAsNumber + 1;
+    //     setQuantity(qty)
+    // }
 
-    const decreaseQty = () => {
+    // const decreaseQty = () => {
 
-        const count = document.querySelector('.count')
+    //     const count = document.querySelector('.count')
 
-        if (count.valueAsNumber <= 1) return;
+    //     if (count.valueAsNumber <= 1) return;
 
-        const qty = count.valueAsNumber - 1;
-        setQuantity(qty)
+    //     const qty = count.valueAsNumber - 1;
+    //     setQuantity(qty)
 
-    }
+    // }
 
     function setUserRatings() {
         const stars = document.querySelectorAll('.star');
@@ -112,63 +113,64 @@ const ProductDetails = ({ match }) => {
 
         formData.set('rating', rating);
         formData.set('comment', comment);
-        formData.set('productId', match.params.id);
+        formData.set('vehicleId', match.params.id);
 
-        dispatch(newReview(formData));
+        dispatch(newVehicleReview(formData));
     }
 
     return (
         <Fragment>
             {loading ? <Loader /> : (
                 <Fragment>
-                    <MetaData title={product.name} />
+                    <MetaData title={vehicle.numberofmarla} />
                     <div className="row d-flex justify-content-around">
                         <div className="col-12 col-lg-5 img-fluid" id="product_image">
                             <Carousel pause='hover'>
-                                {product.images && product.images.map(image => (
+                                {vehicle.images && vehicle.images.map(image => (
                                     <Carousel.Item key={image.public_id}>
-                                        <img className="d-block w-100" src={image.url} alt={product.title} />
+                                        <img className="d-block w-100" src={image.url} alt={vehicle.title} />
                                     </Carousel.Item>
                                 ))}
                             </Carousel>
                         </div>
 
                         <div className="col-12 col-lg-5 mt-5">
-                            <h3>{product.name}</h3>
-                            <p id="product_id">Product # {product._id}</p>
+                            {/* <h3>{vehicle.numberofmarla}</h3> */}
+                            <p id="product_id">Vehicle # {vehicle._id}</p>
 
                             <hr />
 
                             <div className="rating-outer">
-                                <div className="rating-inner" style={{ width: `${(product.ratings / 5) * 100}%` }}></div>
+                                <div className="rating-inner" style={{ width: `${(vehicle.ratings / 5) * 100}%` }}></div>
                             </div>
-                            <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
+                            <span id="no_of_reviews">({vehicle.numOfReviews} Reviews)</span>
 
                             <hr />
 
-                            <p id="product_price">${product.price}</p>
+                            {/* <p id="product_price">${vehicle.totalprice}</p>
                             <div className="stockCounter d-inline">
                                 <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 
                                 <input type="number" className="form-control count d-inline" value={quantity} readOnly />
 
                                 <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
-                            </div>
-                            <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" 
-                            disabled={product.stock === 0} onClick={addToCart}>Add to Cart</button>
+                            </div> */}
+                            {/* <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4"
+                             disabled={vehicle.stock === 0} onClick={addToCart}>Add to Cart</button>
 
                             <hr />
 
-                            <p>Status: <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
+                            <p>Status: <span id="stock_status" className={vehicle.stock > 0 ? 'greenColor' : 'redColor'} >{vehicle.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p> */}
 
                             <hr />
 
                             <h4 className="mt-2">Description:</h4>
-                            <p>{product.description}</p>
+                            {/* <p>{vehicle.totalprice}</p>
                             <hr />
-                            <p id="product_seller mb-3">Sold by: <strong>{product.seller}</strong></p>
+                            <p id="product_seller mb-3">Sold by: <strong>{vehicle.totalprice}</strong></p> */}
 
-                            {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>
+                            {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4"
+                             data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>
                                 Submit Your Review
                             </button>
                                 :
@@ -179,7 +181,8 @@ const ProductDetails = ({ match }) => {
                             <div className="row mt-2 mb-5">
                                 <div className="rating w-50">
 
-                                    <div className="modal fade" id="ratingModal" tabIndex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                                    <div className="modal fade" id="ratingModal" tabIndex="-1" role="dialog"
+                                     aria-labelledby="ratingModalLabel" aria-hidden="true">
                                         <div className="modal-dialog" role="document">
                                             <div className="modal-content">
                                                 <div className="modal-header">
@@ -207,7 +210,8 @@ const ProductDetails = ({ match }) => {
 
                                                     </textarea>
 
-                                                    <button className="btn my-3 float-right review-btn px-4 text-white" onClick={reviewHandler} data-dismiss="modal" aria-label="Close">Submit</button>
+                                                    <button className="btn my-3 float-right review-btn px-4 text-white" 
+                                                    onClick={reviewHandler} data-dismiss="modal" aria-label="Close">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -218,8 +222,8 @@ const ProductDetails = ({ match }) => {
                         </div>
                     </div>
 
-                    {product.reviews && product.reviews.length > 0 && (
-                        <ListReviews reviews={product.reviews} />
+                    {vehicle.reviews && vehicle.reviews.length > 0 && (
+                        <ListReviews reviews={vehicle.reviews} />
                     )}
 
                 </Fragment>
@@ -228,4 +232,4 @@ const ProductDetails = ({ match }) => {
     )
 }
 
-export default ProductDetails
+export default VehicleDetails

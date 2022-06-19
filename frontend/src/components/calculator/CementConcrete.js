@@ -9,9 +9,9 @@ const CementConcrete = () => {
   const [isSubmit,setIsSumit] = useState(false);
 
   //const [length, setLength] = useState("");
-  const [width, setWidth] = useState("");
-  const [depth, setDepth] = useState("");
-  const[grade,setgrade] = useState("");
+  // const [width, setWidth] = useState("");
+  // const [depth, setDepth] = useState("");
+  // const[grade,setgrade] = useState("");
 
  const [volume, setVolume] = useState("");
  //Cement
@@ -25,114 +25,6 @@ const CementConcrete = () => {
  const[concreteVolume,setConcreteVolume] = useState("");
  const[concreteKG,setConcreteKG] = useState("");
  const[concreteTON,setConcreteTON] = useState("");
-  //const [status, setStatus] = useState("");
-
-  //function calculate() {
-//     var cementVolume;
-//     var sandVolume;
-//     var cementBags;
-//     var cementKG;
-//     var sandKG;
-//     var sandTON;
-//     var concreteVolume;
-//     var concreteKG;
-//     var concreteTON;
-//     var totalVolume = Number(length * width * depth);
-//     //totalVolume= totalVolume.toFixed(2);
-//  // console.log(totalVolume);
-//     var wetVolume = totalVolume+(totalVolume*52.4/100);
-//     wetVolume = wetVolume.toFixed(2);
-//     if (grade==="M20") {
-//       cementVolume = (1/5.5 * wetVolume).toFixed(2);
-//      cementBags = (cementVolume*1000/35).toFixed(2);
-//      cementKG = (cementBags*50).toFixed(2);
-//      sandVolume = (1.5/5.5 * wetVolume).toFixed(2);
-//      sandKG = (sandVolume * 1550).toFixed(2);
-//      sandTON = (sandKG/1000).toFixed(2);
-//      concreteVolume = (3/5.5 * wetVolume).toFixed(2);
-//      concreteKG = (concreteVolume * 1350).toFixed(2);
-//      concreteTON = (concreteKG/1000).toFixed(2);
-//      setVolume(cementVolume);
-//      setCementBags(cementBags);
-//      setcementKG(cementKG);
-//      setSandVolume(sandVolume);
-//      setSandKG(sandKG);
-//      setSandTON(sandTON);
-//      setConcreteVolume(concreteVolume);
-//      setConcreteKG(concreteKG);
-//      setConcreteTON(concreteTON);
-//     }else if(grade==="M15"){
-//       cementVolume = (1/7 * wetVolume).toFixed(2);
-//       cementBags = (cementVolume/0.035).toFixed(2);
-//       cementKG = (cementBags*50).toFixed(2);
-//       sandVolume = (2/7 * wetVolume).toFixed(2);
-//       sandKG = (sandVolume * 1550).toFixed(2);
-//       sandTON = (sandKG/1000).toFixed(2);
-//       concreteVolume = (4/7 * wetVolume).toFixed(2);
-//       concreteKG = (concreteVolume * 1350).toFixed(2);
-//       concreteTON = (concreteKG/1000).toFixed(2);
-//       setVolume(cementVolume);
-//       setCementBags(cementBags);
-//       setcementKG(cementKG);
-//       setSandVolume(sandVolume);
-//       setSandKG(sandKG);
-//       setSandTON(sandTON);
-//       setConcreteVolume(concreteVolume);
-//       setConcreteKG(concreteKG);
-//       setConcreteTON(concreteTON);
-      
-//     }else if(grade==="M10"){
-//       cementVolume = (1/10 * wetVolume).toFixed(2);
-//      cementBags = (cementVolume/0.035).toFixed(2);
-//      cementKG = (cementBags*50).toFixed(2);
-//      sandVolume = (3/10 * wetVolume).toFixed(2);
-//      sandKG = (sandVolume * 1550).toFixed(2);
-//      sandTON = (sandKG/1000).toFixed(2);
-//      concreteVolume = (6/10 * wetVolume).toFixed(2);
-//      concreteKG = (concreteVolume * 1350).toFixed(2);
-//      concreteTON = (concreteKG/1000).toFixed(2);
-//      setVolume(cementVolume);
-//      setCementBags(cementBags);
-//      setcementKG(cementKG);
-//      setSandVolume(sandVolume);
-//      setSandKG(sandKG);
-//      setSandTON(sandTON);
-//      setConcreteVolume(concreteVolume);
-//      setConcreteKG(concreteKG);
-//      setConcreteTON(concreteTON);
-      
-//     }else if(grade==="M7.5"){
-//       cementVolume = (1/13 * wetVolume).toFixed(2);
-//       cementBags = (cementVolume/0.035).toFixed(2);
-//       cementKG = (cementBags*50).toFixed(2);
-//       sandVolume = (4/13 * wetVolume).toFixed(2);
-//       sandKG = (sandVolume * 1550).toFixed(2);
-//       sandTON = (sandKG/1000).toFixed(2);
-//       concreteVolume = (8/13 * wetVolume).toFixed(2);
-//       concreteKG = (concreteVolume * 1350).toFixed(2);
-//       concreteTON = (concreteKG/1000).toFixed(2);
-//       setVolume(cementVolume);
-//       setCementBags(cementBags);
-//       setcementKG(cementKG);
-//       setSandVolume(sandVolume);
-//       setSandKG(sandKG);
-//       setSandTON(sandTON);
-//       setConcreteVolume(concreteVolume);
-//       setConcreteKG(concreteKG);
-//       setConcreteTON(concreteTON);
-      
-//     }
-//     else{
-//       <p>Not found</p>
-//     }
-
-  
-    
-//     setLength("");
-//     setWidth("");
-//     setDepth("");
-//     setgrade("");
-//   }
 
   
   const handleChange = (e) => {
@@ -148,6 +40,7 @@ const CementConcrete = () => {
   }
   function handlesubmit(e) {
     e.preventDefault();
+    e.target.reset();
     setFormErrors(validate(formValues));
      setIsSumit(true);
   };
@@ -231,6 +124,7 @@ else if(value.depth < 0){
        setConcreteVolume(concreteVolume);
        setConcreteKG(concreteKG);
        setConcreteTON(concreteTON);
+       setFormValues('');
       }else if(value.grades==="M15"){
         cementVolume = (1/7 * wetVolume).toFixed(2);
         cementBags = (cementVolume/0.035).toFixed(2);
@@ -250,7 +144,7 @@ else if(value.depth < 0){
         setConcreteVolume(concreteVolume);
         setConcreteKG(concreteKG);
         setConcreteTON(concreteTON);
-        
+        setFormValues('');
       }else if(value.grades==="M10"){
         cementVolume = (1/10 * wetVolume).toFixed(2);
        cementBags = (cementVolume/0.035).toFixed(2);
@@ -270,7 +164,7 @@ else if(value.depth < 0){
        setConcreteVolume(concreteVolume);
        setConcreteKG(concreteKG);
        setConcreteTON(concreteTON);
-        
+       setFormValues(''); 
       }else if(value.grades==="M7.5"){
         cementVolume = (1/13 * wetVolume).toFixed(2);
         cementBags = (cementVolume/0.035).toFixed(2);
@@ -290,7 +184,7 @@ else if(value.depth < 0){
         setConcreteVolume(concreteVolume);
         setConcreteKG(concreteKG);
         setConcreteTON(concreteTON);
-        
+        setFormValues('');
       }
       else{
         <p>Not found</p>
@@ -307,6 +201,11 @@ else if(value.depth < 0){
     return errors;
     
     };
+    const handleClick = () => {
+      // 👇️ clear input value
+     // e.preventDefault();
+      setFormValues('');
+    };
   return (
     <Fragment>
             <MetaData title={'CementConcreteCalculator'} />
@@ -317,7 +216,7 @@ else if(value.depth < 0){
                 <Fragment>
     <div className="container container-fluid">
         <div className="wrapper my-5"> 
-        <pre>{JSON.stringify(formValues,undefined,2)}</pre>
+        {/* <pre>{JSON.stringify(formValues,undefined,2)}</pre> */}
         <form className="shadow-lg" encType='multipart/form-data' onSubmit={handlesubmit}>
             <h1 className="mb-4">Cement Concrete Calculator</h1>
 
@@ -339,7 +238,7 @@ else if(value.depth < 0){
                      <option value="M10">M10(1:3:6)</option>
                      <option value="M7.5">M7.5(1:4:8)</option>
                   </select>
-                  {formValues.grades}
+                  
               </div>
               <div> <p className='text-danger'>{formErrors.grades}</p></div>
 
@@ -395,8 +294,9 @@ else if(value.depth < 0){
               Calculate
             </button>
             <button
-              id="login_button"
-              type="submit"
+             // id="login_button"
+             // type="submit"
+             onClick={handleClick}
               class="btn btn-block py-3"
             >
               Reset

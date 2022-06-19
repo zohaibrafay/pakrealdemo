@@ -7,130 +7,17 @@ const Steel = () => {
   const [formValues,setFormValues] = useState(intialValues);
   const [formErrors,setFormErrors] = useState({});
   const [isSubmit,setIsSumit] = useState(false);
-  const [width, setWidth] = useState("");
-    const [length, setLength] = useState("");
-    const [distanceWidth,setDistanceWidth] = useState("");
-    const [distanceLength,setDistanceLength] = useState("");
+  // const [width, setWidth] = useState("");
+  //   const [length, setLength] = useState("");
+  //   const [distanceWidth,setDistanceWidth] = useState("");
+  //   const [distanceLength,setDistanceLength] = useState("");
 
-    const [diameter,setDiameter] = useState("");
+  //   const [diameter,setDiameter] = useState("");
   
     const [totalKG, setTotalKG] = useState("");
   
     
-   // function calculateQuantity() {
-    //   var steelInKG;
-    //   var totalBarWidth;
-    //   var totalBarLength;
-    //   var widthTotalKG;
-    //   var lengthTotalKG;
-    //   var totalKG;
-    //   var widthInMeter = (width/3.281).toFixed(2);
-    //   //console.log(widthInMeter);
-    //   var lengthInMeter = (length/3.281).toFixed(2);
-    //  // var cost = Number(width * length).toFixed(2);
-    //  console.log(lengthInMeter);
-    
-      //setcostResult(widthInMeter);
-
-      // if(diameter==="6mm"){
-      //   steelInKG = (6*6/162.162).toFixed(2);
-      //   //console.log(steelInKG);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   //console.log(totalBar);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //  // console.log(widthTotalKG);
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   //console.log(totalBarLength);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   //console.log(lengthTotalKG);
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-
-      //   setTotalKG(totalKG);
-      // }if(diameter==="8mm"){
-      //   steelInKG = (8*8/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }if(diameter==="10mm"){
-      //   steelInKG = (10*10/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }if(diameter==="12mm"){
-      //   steelInKG = (12*12/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }if(diameter==="16mm"){
-      //   steelInKG = (16*16/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }if(diameter==="20mm"){
-      //   steelInKG = (20*20/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }if(diameter==="25mm"){
-      //   steelInKG = (25*25/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }if(diameter==="32mm"){
-      //   steelInKG = (32*32/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }if(diameter==="40mm"){
-      //   steelInKG = (40*40/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }if(diameter==="45mm"){
-      //   steelInKG = (45*45/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }if(diameter==="50mm"){
-      //   steelInKG = (50*50/162.162).toFixed(2);
-      //   totalBarWidth = (width*12/distanceWidth).toFixed(2);
-      //   widthTotalKG = widthInMeter*steelInKG*totalBarWidth;
-      //   totalBarLength = (length*12/distanceLength).toFixed(2);
-      //   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
-      //   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
-      //   setTotalKG(totalKG);
-      // }
-  
-     // setHeight("");
-     // setWeight("");
-   // };
+   
     const handleChange = (e) => {
       //console.log(e.target);
       const {name,value} = e.target;
@@ -144,6 +31,7 @@ const Steel = () => {
     }
     function handlesubmit(e) {
       e.preventDefault();
+      e.target.reset();
       setFormErrors(validate(formValues));
        setIsSumit(true);
     };
@@ -220,6 +108,7 @@ else if(value.diameter==="6mm"){
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
 
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="8mm"){
   steelInKG = (8*8/162.162).toFixed(2);
@@ -229,6 +118,7 @@ else if(value.diameter==="8mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="10mm"){
   steelInKG = (10*10/162.162).toFixed(2);
@@ -238,6 +128,7 @@ else if(value.diameter==="10mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="12mm"){
   steelInKG = (12*12/162.162).toFixed(2);
@@ -247,6 +138,7 @@ else if(value.diameter==="12mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="16mm"){
   steelInKG = (16*16/162.162).toFixed(2);
@@ -256,6 +148,7 @@ else if(value.diameter==="16mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="20mm"){
   steelInKG = (20*20/162.162).toFixed(2);
@@ -265,6 +158,7 @@ else if(value.diameter==="20mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="25mm"){
   steelInKG = (25*25/162.162).toFixed(2);
@@ -274,6 +168,7 @@ else if(value.diameter==="25mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="32mm"){
   steelInKG = (32*32/162.162).toFixed(2);
@@ -283,6 +178,7 @@ else if(value.diameter==="32mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="40mm"){
   steelInKG = (40*40/162.162).toFixed(2);
@@ -292,6 +188,7 @@ else if(value.diameter==="40mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="45mm"){
   steelInKG = (45*45/162.162).toFixed(2);
@@ -301,6 +198,7 @@ else if(value.diameter==="45mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else if(value.diameter==="50mm"){
   steelInKG = (50*50/162.162).toFixed(2);
@@ -310,11 +208,17 @@ else if(value.diameter==="50mm"){
   lengthTotalKG = lengthInMeter*steelInKG*totalBarLength;
   totalKG = (widthTotalKG+lengthTotalKG).toFixed(2);
   setTotalKG(totalKG);
+  setFormValues('');
 }
 else{
   <p>Not found</p>
 }
     return errors;
+    };
+    const handleClick = () => {
+      // 👇️ clear input value
+     
+      setFormValues('');
     };
   
   return (
@@ -328,7 +232,7 @@ else{
                 <Fragment>
     <div className="container container-fluid">
         <div className="wrapper my-5"> 
-        <pre>{JSON.stringify(formValues,undefined,2)}</pre>
+        {/* <pre>{JSON.stringify(formValues,undefined,2)}</pre> */}
         <form className="shadow-lg" encType='multipart/form-data' onSubmit={handlesubmit}>
             <h1 className="mb-4">Steel Calculator</h1>
 
@@ -425,8 +329,9 @@ else{
               Calculate
             </button>
             <button
-              id="login_button"
-              type="submit"
+              //id="login_button"
+              //type="submit"
+              onClick={handleClick}
               class="btn btn-block py-2"
             >
               Reset

@@ -1,63 +1,135 @@
-import React, {Fragment} from 'react'
-import MetaData from '../layout/MetaData'
-import Sidebar from './Sidebar'
+
+import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-const ComplainList = () => {
+import { MDBDataTable } from 'mdbreact'
+
+import MetaData from '../layout/MetaData'
+import Loader from '../layout/Loader'
+import Sidebar from './Sidebar'
+
+import { useAlert } from 'react-alert'
+import { useDispatch, useSelector } from 'react-redux'
+// import { getAdminProducts, deleteProduct } from '../../actions/productActions'
+// import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
+
+import {getComplain, deleteComplain, clearErrors } from '../../actions/complainActions'
+import { DELETE_COMPLAIN_RESET } from '../../constants/complainConstants'
+const ComplainList = ({ history }) => {
+
+    const alert = useAlert();
+    const dispatch = useDispatch();
+
+    const { loading, error, complains } = useSelector(state => state.complains);
+    const { error: deleteError, isDeleted } = useSelector(state => state.complain)
+
+    useEffect(() => {
+        dispatch(getComplain());
+
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors())
+        }
+
+        if (deleteError) {
+            alert.error(deleteError);
+            dispatch(clearErrors())
+        }
+
+        if (isDeleted) {
+            alert.success('Complain is deleted successfully');
+            history.push('/admin/complains');
+            dispatch({ type: DELETE_COMPLAIN_RESET })
+        }
+
+    }, [dispatch, alert, error, deleteError, isDeleted, history])
+
+    const setComplains = () => {
+        const data = {
+            columns: [
+                {
+                    label: 'ID',
+                    field: 'id',
+                    sort: 'asc'
+                },
+                {
+                    label: 'Name',
+                    field: 'name',
+                    sort: 'asc'
+                },
+                {
+                    label: 'Email',
+                    field: 'email',
+                    sort: 'asc'
+                },
+                {
+                    label: 'Phone',
+                    field: 'phone',
+                    sort: 'asc'
+                },
+                {
+                    label: 'Complaint',
+                    field: 'complaint',
+                    sort: 'asc'
+                },
+                {
+                    label: 'Actions',
+                    field: 'actions',
+                },
+            ],
+            rows: []
+        }
+
+        complains.forEach(complain => {
+            data.rows.push({
+                id: complain._id,
+                name: complain.name,
+                email: complain.email,
+                phone: complain.phone,
+                complaint: complain.complaint,
+                actions: <Fragment>
+                    
+                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteComplainHandler(complain._id)}>
+                        <i className="fa fa-trash"></i>
+                    </button>
+                </Fragment>
+            })
+        })
+
+        return data;
+    }
+
+    const deleteComplainHandler = (id) => {
+        dispatch(deleteComplain(id))
+    }
+
     return (
         <Fragment>
-        <MetaData title={'New Product'} />
-        <div className="row">
-            <div className="col-12 col-md-2">
-                <Sidebar />
+            <MetaData title={'All Products'} />
+            <div className="row">
+                <div className="col-12 col-md-2">
+                    <Sidebar />
+                </div>
+
+                <div className="col-12 col-md-10">
+                    <Fragment>
+                        <h1 className="my-5">All Products</h1>
+
+                        {loading ? <Loader /> : (
+                            <MDBDataTable
+                                data={setComplains()}
+                                className="px-3"
+                                bordered
+                                striped
+                                hover
+                            />
+                        )}
+
+                    </Fragment>
+                </div>
             </div>
-    
-            <div className="col-12 col-md-10" >
-                <Fragment>
-                <h1 className="my-5">All Complaints</h1>
-                <div id="example_wrapper" className="dataTables_wrapper my-5"><div className="dataTables_length" id="example_length"><label>Show <select name="example_length" aria-controls="example" className><option value={10}>10</option><option value={25}>25</option><option value={50}>50</option><option value={100}>100</option></select> entries</label></div><div id="example_filter" className="dataTables_filter"><label>Search:<input type="search" className placeholder aria-controls="example" /></label></div><table id="example" className="display dataTable" style={{width: '100%'}} aria-describedby="example_info">
-        
-    
-    
-                <table class="table">
-         <thead>
-             <tr>
-              <th>Complain ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Message</th>
-              <th>Action</th>
-             </tr>
-         </thead>
-         <tbody>
-               <tr>
-                     <td data-label="S.No">1</td>
-                     <td data-label="Name">Noorullah</td>
-                     <td data-label="Age">noor@gmail.com</td>
-                     <td data-label="Marks%">Quality of product is not good</td>
-                 <td data-label="Staus"> <i className="fa fa-trash"></i> </td>
-               </tr>
-    
-               <tr>
-                     <td data-label="S.No">2</td>
-                     <td data-label="Name">Ali</td>
-                     <td data-label="Age">ali@gmail.com</td>
-                     <td data-label="Marks%">Order didn't come on time</td>
-                     <td data-label="Staus"> <i className="fa fa-trash"></i></td>
-               </tr>
-    
-               
-         </tbody>
-       </table>
-      </table><div className="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-      </div>
-    
-                </Fragment>
-            </div>
-        </div>
-    
-    </Fragment>
+
+        </Fragment>
     )
 }
-
 
 export default ComplainList

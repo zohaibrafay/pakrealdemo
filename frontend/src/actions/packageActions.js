@@ -153,7 +153,7 @@ export const getPackDetails = (id) => async (dispatch) => {
     }
 }
 
-export const newReview = (reviewData) => async (dispatch) => {
+export const newReview = (reviewDatapk) => async (dispatch) => {
     try {
 
         dispatch({ type: NEW_REVIEW_REQUEST })
@@ -164,7 +164,7 @@ export const newReview = (reviewData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put(`/api/v1/review`, reviewData, config)
+        const { data } = await axios.put(`/api/v1/reviewpk`, reviewDatapk, config)
 
         dispatch({
             type: NEW_REVIEW_SUCCESS,
@@ -207,7 +207,7 @@ export const getPackReviews = (id) => async (dispatch) => {
 
         dispatch({ type: GET_REVIEWS_REQUEST })
 
-        const { data } = await axios.get(`/api/v1/reviews?id=${id}`)
+        const { data } = await axios.get(`/api/v1/reviewspk?id=${id}`)
 
         dispatch({
             type: GET_REVIEWS_SUCCESS,
@@ -229,7 +229,7 @@ export const deleteReview = (id, packId) => async (dispatch) => {
 
         dispatch({ type: DELETE_REVIEW_REQUEST })
 
-        const { data } = await axios.delete(`/api/v1/reviews?id=${id}&packId=${packId}`)
+        const { data } = await axios.delete(`/api/v1/reviewspk?id=${id}&packId=${packId}`)
 
         dispatch({
             type: DELETE_REVIEW_SUCCESS,

@@ -5,7 +5,11 @@ const cookieParser = require("cookie-parser");
 const bodyparser = require("body-parser");
 const fileUpload = require("express-fileupload");
 
+const dotenv = require('dotenv');
 const errorMiddleware = require("./middlewares/errors");
+
+
+dotenv.config({path:'backend/config/config.env'})
 
 app.use(express.json({ limit: "50mb" }));
 app.use(
@@ -32,7 +36,7 @@ const labour = require("./routes/labor");
 const vehicle = require("./routes/vehicle");
 const payment = require("./routes/payment");
 const coupon = require("./routes/coupon");
-
+const complain=require('./routes/complain');
 app.use("/api/v1", products);
 app.use("/api/v1", packages);
 app.use("/api/v1", auth);
@@ -40,9 +44,9 @@ app.use("/api/v1", order);
 app.use("/api/v1", video);
 app.use("/api/v1", labour);
 app.use("/api/v1", vehicle);
-app.use("/api/v1", payment);
+app.use('/api/v1', payment)
 app.use("/api/v1", coupon);
-
+app.use("/api/v1", complain);
 if (process.env.NODE_ENV === "PRODUCTION") {
   app.use(express.static(path.join(__dirname, "../frontend/build")));
 

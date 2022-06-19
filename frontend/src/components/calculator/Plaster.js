@@ -26,127 +26,7 @@ const Plaster = () => {
   const[sandKG,setSandKG] = useState("");
 
  
-  //function calculate() {
-    //   var volumeOfMortar;
-    //   var dryVolume;
-    //   var cement;
-    //   var cementBag;
-    //   var cementKG;
-    //   var sand;
-    //   var sandTON;
-    //   var sandKG;
-    //   var selectError;
-    //   var error;
-    // var plasterArea = Number(length * width );
-   
-    
-    //  if (plasterType==="12MM"&&grade==="C.M(1:5)") {
-    //     volumeOfMortar = (plasterArea*0.012);
-    //  //Note: Add 30% to fill up join & Cover surface
-    //  volumeOfMortar = volumeOfMortar +(volumeOfMortar*0.3);
-    //  //Note: Increases by 25% of the total dry volume
-    // dryVolume = volumeOfMortar+(volumeOfMortar*0.25);
-    //    dryVolume =  dryVolume.toFixed(2);
-    //     cement = (dryVolume * 1/6)/0.035;
-    //     cementBag = cement.toFixed(2);
-    //     setCementBag(cementBag);
-    //     cementKG = (cement*50).toFixed(2);
-    //     setCementKG(cementKG);
-    //     sand = (dryVolume * 5/6)*1550;
-    //     sandKG = sand.toFixed(0);
-    //     setSandKG(sandKG);
-    //     sandTON = (sand/1000).toFixed(2);
-    //    setSandTON(sandTON);
-    //  }else if (plasterType==="12MM"&&grade==="C.M(1:6)") {
-    //     volumeOfMortar = (plasterArea*0.012);
-    //  //Note: Add 30% to fill up join & Cover surface
-    //  volumeOfMortar = volumeOfMortar +(volumeOfMortar*0.3);
-    //  //Note: Increases by 25% of the total dry volume
-    // dryVolume = volumeOfMortar+(volumeOfMortar*0.25);
-    //    dryVolume =  dryVolume.toFixed(2);
-    //     cement = (dryVolume * 1/7)/0.035;
-    //     cementBag = cement.toFixed(2);
-    //     setCementBag(cementBag);
-    //     cementKG = (cement*50).toFixed(2);
-    //     setCementKG(cementKG);
-    //     sand = (dryVolume * 6/7)*1550;
-    //     sandKG = sand.toFixed(0);
-    //     setSandKG(sandKG);
-    //     sandTON = (sand/1000).toFixed(2);
-    //    setSandTON(sandTON);
-    //  }else if (plasterType==="15MM"&&grade==="C.M(1:3)") {
-    //     volumeOfMortar = (plasterArea*0.015);
-    //  //Note: Add 30% to fill up join & Cover surface
-    //  volumeOfMortar = volumeOfMortar +(volumeOfMortar*0.3);
-    //  //Note: Increases by 25% of the total dry volume
-    // dryVolume = volumeOfMortar+(volumeOfMortar*0.25);
-    //    dryVolume =  dryVolume.toFixed(2);
-    //     cement = (dryVolume * 1/4)/0.035;
-    //     cementBag = cement.toFixed(2);
-    //     setCementBag(cementBag);
-    //     cementKG = (cement*50).toFixed(2);
-    //     setCementKG(cementKG);
-    //     sand = (dryVolume * 3/4)*1550;
-    //     sandKG = sand.toFixed(0);
-    //     setSandKG(sandKG);
-    //     sandTON = (sand/1000).toFixed(2);
-    //    setSandTON(sandTON);
-    //  }else if (plasterType==="18MM"&&grade==="C.M(1:3)") {
-    //     volumeOfMortar = (plasterArea*0.018);
-    //  //Note: Add 30% to fill up join & Cover surface
-    //  volumeOfMortar = volumeOfMortar +(volumeOfMortar*0.3);
-    //  //Note: Increases by 25% of the total dry volume
-    // dryVolume = volumeOfMortar+(volumeOfMortar*0.25);
-    //    dryVolume =  dryVolume.toFixed(2);
-    //     cement = (dryVolume * 1/4)/0.035;
-    //     cementBag = cement.toFixed(2);
-    //     setCementBag(cementBag);
-    //     cementKG = (cement*50).toFixed(2);
-    //     setCementKG(cementKG);
-    //     sand = (dryVolume * 3/4)*1550;
-    //     sandKG = sand.toFixed(0);
-    //     setSandKG(sandKG);
-    //     sandTON = (sand/1000).toFixed(2);
-    //    setSandTON(sandTON);
-    //  }else if (plasterType==="6MM"&&grade==="C.M(1:4)") {
-    //     volumeOfMortar = (plasterArea*0.006);
-    //  //Note: Add 30% to fill up join & Cover surface
-    //  volumeOfMortar = volumeOfMortar +(volumeOfMortar*0.3);
-    //  //Note: Increases by 25% of the total dry volume
-    // dryVolume = volumeOfMortar+(volumeOfMortar*0.25);
-    //    dryVolume =  dryVolume.toFixed(2);
-    //     cement = (dryVolume * 1/5)/0.035;
-    //     cementBag = cement.toFixed(2);
-    //     setCementBag(cementBag);
-    //     cementKG = (cement*50).toFixed(2);
-    //     setCementKG(cementKG);
-    //     sand = (dryVolume * 4/5)*1550;
-    //     sandKG = sand.toFixed(0);
-    //     setSandKG(sandKG);
-    //     sandTON = (sand/1000).toFixed(2);
-    //    setSandTON(sandTON);
-    //  } else if(length === "" || width === "" ){
-    //  error =  "Plz write length and width";
-    //  console.log(error);
-    //  setError(error);
-    //  }
-     
-    //   else{
-    //     //selectError = "Selection of Plaster Type and Grade of footing is wrong";
-    //     //console.log(selectError);
-    //  //setSelectError(selectError);
-    //  //setCementBag("0.00");
-    //  //setCementKG("0.00");
-    //  //setSandKG("0.00");
-    //  //setSandTON("0.00");
-    // }
-
   
-    
-    //setLength("");
-    //setWidth("");
-    //setgrade("");
-  //}
   const handleChange = (e) => {
     //console.log(e.target);
     const {name,value} = e.target;
@@ -160,6 +40,7 @@ const Plaster = () => {
   }
   function handlesubmit(e) {
     e.preventDefault();
+    e.target.reset();
     setFormErrors(validate(formValues));
      setIsSumit(true);
   };
@@ -306,7 +187,29 @@ else if (!value.grades || value.grades === "") {
         sandTON = (sand/1000).toFixed(2);
        setSandTON(sandTON);
      } 
-     
+     else if (value.plasterType==="12MM"&&value.grades==="C.M(1:3)") {
+      errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+     }else if (value.plasterType==="12MM"&&value.grades==="C.M(1:4)") {
+      errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+ }else if (value.plasterType==="15MM"&&value.grades==="C.M(1:5)") {
+  errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+}else if (value.plasterType==="15MM"&&value.grades==="C.M(1:6)") {
+  errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+}else if (value.plasterType==="15MM"&&value.grades==="C.M(1:4)") {
+  errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+}else if (value.plasterType==="18MM"&&value.grades==="C.M(1:5)") {
+  errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+}else if (value.plasterType==="18MM"&&value.grades==="C.M(1:6)") {
+  errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+}else if (value.plasterType==="18MM"&&value.grades==="C.M(1:4)") {
+  errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+}else if (value.plasterType==="6MM"&&value.grades==="C.M(1:5)") {
+  errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+}else if (value.plasterType==="6MM"&&value.grades==="C.M(1:6)") {
+  errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+}else if (value.plasterType==="6MM"&&value.grades==="C.M(1:3)") {
+  errors.grades = "Wrong Selection of Plaster Type and Grade of Footing!"
+}
       else{
         <p>Not found</p>
         //selectError = "Selection of Plaster Type and Grade of footing is wrong";
@@ -325,7 +228,11 @@ else if (!value.grades || value.grades === "") {
     
   };
     
-
+  const handleClick = () => {
+    // 👇️ clear input value
+   
+    setFormValues('');
+  };
 
   return (
     <Fragment>
@@ -338,7 +245,7 @@ else if (!value.grades || value.grades === "") {
                 <Fragment>
     <div className="container container-fluid">
         <div className="wrapper my-5"> 
-        <pre>{JSON.stringify(formValues,undefined,2)}</pre>
+        {/* <pre>{JSON.stringify(formValues,undefined,2)}</pre> */}
         <form className="shadow-lg" encType='multipart/form-data' onSubmit={handlesubmit}>
         <div className="mt-4">
            <>
@@ -446,8 +353,9 @@ else if (!value.grades || value.grades === "") {
               Calculate
             </button>
             <button
-              id="login_button"
-              type="submit"
+              //id="login_button"
+              //type="submit"
+              onClick={handleClick}
               class="btn btn-block py-2"
             >
               Reset

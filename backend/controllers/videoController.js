@@ -219,45 +219,86 @@ exports.deleteVideo = catchAsyncErrors(async (req, res, next) => {
 
 
 // Create new review   =>   /api/v1/review
+// exports.createVideoReview = catchAsyncErrors(async (req, res, next) => {
+
+//     const { rating, comment, videoId } = req.body;
+
+//     const review = {
+//         user: req.user._id,
+//         name: req.user.name,
+//         rating: Number(rating),
+//         comment
+//     }
+
+//     const video = await Video.findById(videoId);
+
+//     const isReviewed = video.reviews.find(
+//         r => r.user.toString() === req.user._id.toString()
+//     )
+
+//     if (isReviewed) {
+//         video.reviews.forEach(review => {
+//             if (review.user.toString() === req.user._id.toString()) {
+//                 review.comment = comment;
+//                 review.rating = rating;
+//             }
+//         })
+
+//     } else {
+//         video.reviews.push(review);
+//         video.numOfReviews = video.reviews.length
+//     }
+
+//     video.ratings = video.reviews.reduce((acc, item) => item.rating + acc, 0) / video.reviews.length
+
+//     await video.save({ validateBeforeSave: false });
+
+//     res.status(200).json({
+//         success: true
+//     })
+
+// })
 exports.createVideoReview = catchAsyncErrors(async (req, res, next) => {
-
     const { rating, comment, videoId } = req.body;
-
+  
     const review = {
-        user: req.user._id,
-        name: req.user.name,
-        rating: Number(rating),
-        comment
-    }
-
+      user: req.user._id,
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+    };
+  
     const video = await Video.findById(videoId);
-
+  
     const isReviewed = video.reviews.find(
-        r => r.user.toString() === req.user._id.toString()
-    )
-
+      (r) => r.user.toString() === req.user._id.toString()
+    );
+  
     if (isReviewed) {
-        video.reviews.forEach(review => {
-            if (review.user.toString() === req.user._id.toString()) {
-                review.comment = comment;
-                review.rating = rating;
-            }
-        })
-
+      video.reviews.forEach((review) => {
+        if (review.user.toString() === req.user._id.toString()) {
+          review.comment = comment;
+          review.rating = rating;
+        }
+      });
     } else {
-        video.reviews.push(review);
-        video.numOfReviews = video.reviews.length
+      video.reviews.push(review);
+      video.numOfReviews = video.reviews.length;
     }
-
-    video.ratings = video.reviews.reduce((acc, item) => item.rating + acc, 0) / video.reviews.length
-
+  
+    video.ratings =
+      video.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      video.reviews.length;
+  
     await video.save({ validateBeforeSave: false });
-
+  
     res.status(200).json({
-        success: true
-    })
+      success: true,
+    });
+  });
 
-})
+
+
 
 
 // Get Product Reviews   =>   /api/v1/reviews

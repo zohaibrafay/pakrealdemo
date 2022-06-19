@@ -47,6 +47,10 @@ const vehicleSchema = new mongoose.Schema({
     maxlength: [30, "Please Enter CNIC"],
     required: [true, "Please Enter CNIC"],
   },
+  ratings: {
+    type: Number,
+    default: 0
+},
   images: [
     {
       public_id: {
@@ -57,6 +61,36 @@ const vehicleSchema = new mongoose.Schema({
       },
     },
   ],
+  numOfReviews: {
+    type: Number,
+    default: 0
+},
+reviews: [
+    {
+        user: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        rating: {
+            type: Number,
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true
+        }
+    }
+],
+user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: true
+},
   isApproved: {
     type: Boolean,
     default: false
