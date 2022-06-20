@@ -187,6 +187,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <ProtectedRoute path="/shipping" component={Shipping} />
+            <ProtectedRoute path="/ordersuccess" component={OrderSuccess} />
            
             <Route path="/order/confirm" component={ConfirmOrder}  />
             {stripeApiKey &&

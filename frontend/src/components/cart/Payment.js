@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createOrder, clearErrors } from '../../actions/orderActions'
 
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
-
+import {  removeItemFromCart } from '../../actions/cartActions'
 import axios from 'axios'
 
 const options = {
@@ -108,8 +108,8 @@ const Payment = ({ history }) => {
                     }
 
                     dispatch(createOrder(order))
-
-                    history.push('/success')
+                    dispatch(removeItemFromCart(result.paymentIntent.id))
+                    history.push("/ordersuccess");
                 } else {
                     alert.error('There is some issue while payment processing')
                 }
