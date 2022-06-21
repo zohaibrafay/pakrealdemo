@@ -58,7 +58,7 @@ reviews: [
     {
         user: {
             type: mongoose.Schema.ObjectId,
-            ref: 'User',
+            ref: 'user',
             required: true
         },
         name: {
@@ -77,8 +77,8 @@ reviews: [
 ],
 user: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    required: true
+    ref: 'user',
+    required: false
 },
   isApproved: {
     type: Boolean,
